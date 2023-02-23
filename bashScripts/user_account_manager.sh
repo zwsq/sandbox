@@ -1,4 +1,6 @@
 #!/bin/bash
+
+#This function gets information of a new system user from the user
 prompt_user () {
         message=${1:-"Please enter the account details"}
         echo "$message"
@@ -12,10 +14,12 @@ prompt_user () {
         echo ""
 }
 
+# This function checks whether the entered username already exists or not
 check_user () {
   grep -q \^${1}\: /etc/passwd && return 0
 }
 
+# This function checks if  the entered passwords are the same and then creates a the new system user
 create_user () {
   prompt_user "Enter new user's details"
         while [ "$user_password" != "$user_password_check" ] ; do
@@ -36,6 +40,7 @@ delete_user () {
   echo "The user ${user_name} deleted successfully."
 }
 
+# This loop keeps displaying the menu to the user
 while true ; do
   clear
   echo "ZWSQ user management script"
